@@ -1,4 +1,6 @@
 import React from 'react';
+// import { Button } from '@material-ui/core';
+// import { FormControl } from '@material-ui/core';
 
 const Login = (props) => {
   const { 
@@ -44,17 +46,18 @@ const Login = (props) => {
           <p>{passwordError}</p>
         </div>
         <div>
-          {hasAccount ? (
+          {/* {hasAccount ? (
             <>
-              <button onSubmit={handleLogin} type="submit">Login</button>
+              <button color="primary" onSubmit={handleLogin} type="submit">Login</button>
               <p>Don't have an account? <span onClick={() => setHasAccount(!hasAccount)}>Sign Up</span></p>
             </>
           ) : (
             <>
-              <button onSubmit={handleSignup} type="submit">Sign Up</button>
+              <button color="primary" onSubmit={handleSignup} type="submit">Sign Up</button>
               <p>Have an account? <span onClick={() => setHasAccount(!hasAccount)}>Login</span></p>
             </>
-          )}
+          )} */}
+          <button color="primary" onSubmit={handleLogin} type="submit">Login</button>
         </div>
         
       </form>
