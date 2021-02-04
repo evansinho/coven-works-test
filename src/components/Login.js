@@ -1,4 +1,5 @@
 import React from 'react';
+import { TextField, Button, Card, Typography } from '@material-ui/core';
 
 const Login = (props) => {
   const { 
@@ -7,57 +8,61 @@ const Login = (props) => {
     password,
     setPassword,
     handleLogin,
-    handleSignup,
     emailError,
     passwordError,
-    hasAccount,
-    setHasAccount,
   } = props;
 
   return (
-    <div className="login-page">
-      <form>
-        <div className="form-group">
-          <label htmlFor="Email"> Email </label>
-          <input
-            type="email"
-            name="email"
-            className="form-control"
-            autoComplete="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-          <p>{emailError}</p>
-        </div>
-        <div className="form-group">
-          <label htmlFor="Password"> Password </label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            autoComplete="new-password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-          <p>{passwordError}</p>
-        </div>
-        <div>
-          {hasAccount ? (
-            <>
-              <button onSubmit={handleLogin} type="submit">Login</button>
-              <p>Don't have an account? <span onClick={() => setHasAccount(!hasAccount)}>Sign Up</span></p>
-            </>
-          ) : (
-            <>
-              <button onSubmit={handleSignup} type="submit">Sign Up</button>
-              <p>Have an account? <span onClick={() => setHasAccount(!hasAccount)}>Login</span></p>
-            </>
-          )}
-        </div>
-        
+    <div 
+      className="login-page"
+      style={{
+        textAlign: 'center',
+      }}
+      >
+      <Typography 
+        color="primary" 
+        variant="h3"
+        style={{
+          margin: '3rem'
+        }}
+      >
+        AIRPORT
+      </Typography>
+      <Card 
+      style={{
+        display: 'inline-block',
+        padding: '30px',
+        textAlign: 'center',
+      }}
+      >
+      <form onSubmit={handleLogin}>
+        <TextField
+          id="standard-basic" 
+          label="Email"
+          type="email"
+          name="email"
+          className="form-control"
+          autoComplete="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+        />
+        <p>{emailError}</p>
+        <TextField
+          id="standard-basic" 
+          label="Password"
+          type="password"
+          name="password"
+          className="form-control"
+          autoComplete="new-password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+        />
+        <p>{passwordError}</p>
+        <Button variant="contained" color="primary" type="submit">Login</Button>
       </form>
+    </Card>
     </div>
   );
 };

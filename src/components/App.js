@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Login from './Login';
 import fire from '../fire';
+import './App.css';
 
 const App = () => {
   const [email, setEmail] = useState('');
@@ -9,7 +10,6 @@ const App = () => {
   const [emailError, setEmailErrors] = useState('');
   const [passwordError, setPasswordErrors] = useState('');
   const [user, setUser] = useState('');
-  const [hasAccount, setHasAccount] = useState(false);
 
   const clearInputs = () => {
     setEmail('');
@@ -24,14 +24,10 @@ const App = () => {
   
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('hello');
     clearErrors();
     fire
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then(res => {
-      console.log(res)
-    })
     .catch(err => {
       switch(err.code) {
         case 'auth/invalid-email':
@@ -40,30 +36,6 @@ const App = () => {
           setEmailErrors(err.message);
           break;
         case 'auth/wrong-password':
-          setPasswordErrors(err.message)
-          break;
-        default:
-      }
-    })
-  }
-
-  const handleSignup = (e) => {
-    e.preventDefault();
-    console.log('hello');
-    clearErrors();
-    fire
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => {
-      switch(err.code) {
-        case 'auth/Email-already-in-use':
-        case 'auth/invalid-email':
-          setEmailErrors(err.message);
-          break;
-        case 'auth/weak-password':
           setPasswordErrors(err.message)
           break;
         default:
@@ -102,11 +74,8 @@ const App = () => {
           password={password}
           setPassword={setPassword}
           handleLogin={handleLogin}
-          handleSignup={handleSignup}
           emailError={emailError}
           passwordError={passwordError}
-          hasAccount={hasAccount}
-          setHasAccount={setHasAccount}
         />
       )}
     </div>
