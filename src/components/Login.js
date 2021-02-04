@@ -7,13 +7,16 @@ const Login = (props) => {
     password,
     setPassword,
     handleLogin,
+    handleSignup,
     emailError,
-    passwordError
+    passwordError,
+    hasAccount,
+    setHasAccount,
   } = props;
 
   return (
     <div className="login-page">
-      <form onSubmit={handleLogin}>
+      <form>
         <div className="form-group">
           <label htmlFor="Email"> Email </label>
           <input
@@ -40,7 +43,20 @@ const Login = (props) => {
           />
           <p>{passwordError}</p>
         </div>
-        <button type="submit">Login</button>
+        <div>
+          {hasAccount ? (
+            <>
+              <button onSubmit={handleLogin} type="submit">Login</button>
+              <p>Don't have an account? <span onClick={() => setHasAccount(!hasAccount)}>Sign Up</span></p>
+            </>
+          ) : (
+            <>
+              <button onSubmit={handleSignup} type="submit">Sign Up</button>
+              <p>Have an account? <span onClick={() => setHasAccount(!hasAccount)}>Login</span></p>
+            </>
+          )}
+        </div>
+        
       </form>
     </div>
   );
