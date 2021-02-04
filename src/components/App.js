@@ -21,15 +21,20 @@ const App = () => {
   }
 
   
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log('hello');
     clearErrors();
     fire
     .auth()
     .signInWithEmailAndPassword(email, password)
+    .then(res => {
+      console.log(res)
+    })
     .catch(err => {
       switch(err.code) {
         case 'auth/invalid-email':
-        case 'auth/user-diaabled':
+        case 'auth/user-disabled':
         case 'auth/user-not-found':
           setEmailErrors(err.message);
           break;
@@ -63,15 +68,19 @@ const App = () => {
 
   return (
     <div className="App">
-      <Login
-      email ={email}
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
-      handleLogin={handleLogin}
-      emailError={emailError}
-      passwordError={passwordError}
-      />
+      {user ? (
+        <h1>Hello</h1>
+      ) : (
+        <Login
+          email ={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          emailError={emailError}
+          passwordError={passwordError}
+        />
+      )}
     </div>
   );
 }
