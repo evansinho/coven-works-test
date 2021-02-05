@@ -72,7 +72,12 @@ const HomePage = () => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-       <h1>Hello</h1>
+       <div>
+          <h1>Hello World</h1>
+          <button type="button" onClick={handleClose}>
+            Close Modal
+          </button>
+       </div>
       </Modal>
     </> 
   )
