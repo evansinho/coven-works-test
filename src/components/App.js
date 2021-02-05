@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import Login from './Login';
+import HomePage from './HomePage';
 import fire from '../fire';
 import './App.css';
 
@@ -66,7 +67,7 @@ const App = () => {
   return (
     <div className="App">
       {user ? (
-        <h1>Hello</h1>
+        <HomePage handleLogout={handleLogout} />
       ) : (
         <Login
           email ={email}
